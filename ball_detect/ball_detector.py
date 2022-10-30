@@ -46,7 +46,7 @@ class ImageSubscriber(Node):
     
     lower_orange = (15, 130, 200)
     upper_orange = (25, 255, 255)
-    pts = deque(maxlen=args["buffer"])
+    pts = deque(maxlen=64)
 
     current_frame = imutils.resize(current_frame, width=600)
     blurred = cv2.GaussianBlur(current_frame, (11, 11), 0)
@@ -86,7 +86,7 @@ class ImageSubscriber(Node):
         continue
       # otherwise, compute the thickness of the line and
       # draw the connecting lines
-      thickness = 64
+      thickness = int(np.sqrt(64 / float(i + 1)) * 2.5)
       cv2.line(current_frame, pts[i - 1], pts[i], (0, 0, 255), thickness)
 
     # Display image
