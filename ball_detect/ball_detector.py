@@ -42,7 +42,7 @@ class ImageSubscriber(Node):
     self.get_logger().info('Receiving video frame')
  
     # Convert ROS Image message to OpenCV image
-    current_frame = self.br.imgmsg_to_cv2(data)
+    current_frame = self.br.imgmsg_to_cv2(data, 'bgr8')
     
     lower_orange = (15, 130, 200)
     upper_orange = (25, 255, 255)
